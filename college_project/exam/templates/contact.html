@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %} Test Page {% endblock title %}
+
+{% block body %}
+
+<div class="container mb-3 py-4">
+    <h2 class="text-center">Register yourself to start the Exam</h2>
+    <form method="post" action="/contact">{% csrf_token %}
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name">
+  </div>
+        <div class="form-group">
+    <label for="registration">Registration No</label>
+    <input type="text" class="form-control" id="registration" name="registration" placeholder="Enter your Registration ID">
+  </div>
+        <div class="form-group">
+    <label for="branch">Branch</label>
+    <input type="text" class="form-control" id="branch" name="branch" placeholder="Enter your Branch">
+  </div>
+        <div class="form-group">
+    <label for="roll">Roll No</label>
+    <input type="roll" class="form-control" id="roll" name="roll" placeholder="Enter your Roll Number">
+  </div>
+        <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email">
+  </div>
+        <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="tel" name="phone" pattern="[0-9]{10}" maxlength="10"
+           class="form-control" id="phone" name="phone" placeholder="Enter your Phone Number" required>
+  </div>
+        <div class="text-center" class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <style>
+            .btn{
+                    margin:5px;
+                }
+            </style>
+            <button type="submit" class="btn btn-primary">Register</button>
+           <a href="/login"> <button type="button" class="btn btn-danger" >Start Exam</button></a>
+        </div>
+    </form></div>
+{% endblock body %}

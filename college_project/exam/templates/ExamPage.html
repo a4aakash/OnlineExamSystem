@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %} Test Page {% endblock title %}
+
+{% block body %}
+<div class="text-center" >
+    <script>
+    let countDownDate= new Date("20 Mar,2021 15:23:00").getTime();
+    	let a;
+    	let date;
+    	let time,time1,time2;
+    	setInterval(()=>{
+    	a = new Date();
+    	date = a.toLocaleDateString();
+    	let distance=countDownDate-a;
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    	time = a.getHours()+':'+a.getMinutes()+':'+a.getSeconds();
+    	document.getElementById('time').innerHTML = hours + "h:"+ minutes + "m:" + seconds + "s ";
+    	if (distance < 0) {
+        clearInterval(setInterval);
+        document.getElementById("time").innerHTML = location.replace("/");
+        }
+    },1000);
+    </script>
+    <div class="container my-4">
+ 	<div class="jumbotron">
+  		<h5 class="display-4">Time Left: <span id="time"></span></h5>
+	</div>
+ </div>
+</div>
+
+<div class="container mb-3 py-4">
+    <h2 class="text-center">Fill the Details and Write the Answer</h2>
+    <form method="post" action="/ExamPage">{% csrf_token %}
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name">
+  </div>
+        <div class="form-group">
+    <label for="roll">Roll No</label>
+    <input type="phone" class="form-control" id="roll" name="roll" placeholder="Enter your Roll Number">
+  </div>
+        <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="tel" name="phone" pattern="[0-9]{10}" maxlength="10"
+           class="form-control" id="phone" name="phone" placeholder="Enter your Phone Number" required>
+  </div>
+
+  <div class="form-group" id="checkboxes">
+      <h3>All Multiple Type Questions are compulsory(5x1=5)</h3>
+	<label for="checkboxes">Q.1. Build & Fix Model is suitable for programming exercises of ___________ LOC (Line of Code).</label>
+	<ol type="a">
+    <li>100-200</li>
+	<li>200-400</li>
+	<li>400-1000</li>
+    <li>above 1000</li>
+	</ol>
+      <label for="checkboxes">Q.2.  RAD stands for</label>
+	<ol type="a">
+	<li>Relative Application Development</li>
+	<li>Rapid Application Development</li>
+	<li>Rapid Application Document</li>
+    <li>None of the mentioned</li>
+	</ol>
+      <label for="checkboxes">Q.3. Which of these does not affect different types of software as a whole?</label>
+	<ol type="a">
+	<li>Heterogeneity</li>
+	<li>Flexibility</li>
+	<li>Business and social change</li>
+    <li>None of the mentioned</li>
+	</ol>
+      <label for="checkboxes">Q.4. The spiral model was originally proposed by</label>
+	<ol type="a">
+	<li>IBM</li>
+	<li>Barry Boehm</li>
+	<li>Pressman</li>
+    <li>None of the mentioned</li>
+	</ol>
+      <label for="checkboxes">Q.5. Which model can be selected if user is involved in all the phases of SDLC</label>
+	<ol type="a">
+	<li>Waterfall Model</li>
+	<li>Prototyping Model</li>
+	<li>RAD Model</li>
+    <li>both Prototyping Model & RAD Model</li>
+	</ol>
+   </div>
+<!--   Here I have to add questions with MCQ and Subjective     -->
+
+  <form class="form-group">
+      <h3>Subjective Questions(Write in at least 100 words)  (5x5=25)</h3>
+    <label for="desc"><h6>1. What is B.Tech?</h6></label><br>
+      <label for="desc"><h6>2. What is Computer Science?</h6></label><br>
+      <label for="desc"><h6>3. Explain Software Engineering.</h6></label><br>
+      <label for="desc"><h6>4. Mention the important points of SRC?</h6></label><br>
+      <label for="desc"><h6>5. Difference between Major and Minor Projects.</h6></label>
+    <textarea class="form-control mb-3" id="desc" rows="3" name="desc"></textarea>
+
+<!--  </div>-->
+<!--        <div style="text-align:center">-->
+<!--            <button class="btn btn-primary" type="submit">Submit</button>-->
+<!--        </div>-->
+
+
+<!-- Upto Here I have to add     -->
+
+        <div class="text-center" class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <style>
+            .btn{
+                    margin:5px;
+                }
+            </style>
+            <button type="submit" class="btn btn-primary">Submit</button>
+           <a href="/"> <button type="button" class="btn btn-danger" >Logout</button></a>
+        </div>
+  </form></form>
+</div>
+{% endblock body %}
